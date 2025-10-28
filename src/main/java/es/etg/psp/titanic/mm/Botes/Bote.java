@@ -23,10 +23,10 @@ public class Bote implements IBote {
         int ninos = total - mujeres - varones;
 
         Map<String, Integer> pasajeros = new HashMap<>();
-        pasajeros.put("Total", total);
-        pasajeros.put("Mujeres", mujeres);
-        pasajeros.put("Varones", varones);
-        pasajeros.put("Niños", ninos);
+        pasajeros.put("codigo", Integer.parseInt(id.replaceAll("\\D", ""))); // extrae el número del id
+        pasajeros.put("mujeres", mujeres);
+        pasajeros.put("varones", varones);
+        pasajeros.put("ninos", ninos);
 
         int delay = 2000 + random.nextInt(4000);
         Thread.sleep(delay);
