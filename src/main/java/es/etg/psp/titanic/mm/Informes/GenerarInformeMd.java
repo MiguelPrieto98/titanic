@@ -1,20 +1,27 @@
 package es.etg.psp.titanic.mm.Informes;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class GenerarInformeMd implements  Exportador{
+public class GenerarInformeMd {
 
-    @Override
     public String exportar(Informes informe) {
-        StringBuilder salida = new StringBuilder();
-        List<Seccion> secciones = informe.getSeccions();  // Asegura tipo correcto
+        StringBuilder sb = new StringBuilder();
 
-        for (Seccion seccion : secciones) {
-            salida.append("## ").append(seccion.getTiitulo()).append("\n\n");
-            salida.append(seccion.getContenido()).append("\n\n");
+        // Cabecera fija
+        sb.append("# SERVICIO DE EMERGENCIAS\n\n");
+
+        // Fecha y hora actual
+        LocalDateTime ahora = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy 'a las' HH:mm:ss");
+        sb.append("Ejecución realizada el día ").append(ahora.format(formato)).append("\n\n");
+
+        // Secciones del informe
+        for (Seccion s : informe.getSeccions()) {
+            sb.append("## ").append(s.getTiitulo()).append("\n\n");
+            sb.append(s.getContenido()).append("\n\n");
         }
 
-        return salida.toString();
+        return sb.toString();
     }
-    
 }

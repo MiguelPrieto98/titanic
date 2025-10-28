@@ -16,6 +16,7 @@
 
 # VS Code
 .vscode/
+target/
 
 # Archivos del sistema
 .DS_Store
