@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import es.etg.psp.titanic.mm.Informes.GeneradorInformeRescate;
 import es.etg.psp.titanic.mm.Informes.GenerarInformeMd;
@@ -15,13 +16,13 @@ import es.etg.psp.titanic.mm.Informes.Informes;
 
 public class ServicioEmergencia {
     public void iniciarSimulacion() throws Exception {
-  Map<String, Map<String, Integer>> resultados = ejecutarBotes();
+        Map<String, Map<String, Integer>> resultados = ejecutarBotes();
 
-        List<Map<String, Integer>> listaResultados = new ArrayList<>(resultados.values());
+        Map<String, Map<String, Integer>> resultadosOrdenados = new TreeMap<>(resultados);
+
+        List<Map<String, Integer>> listaResultados = new ArrayList<>(resultadosOrdenados.values());
 
         Informes informe = GeneradorInformeRescate.generar(listaResultados);
-
-        // 4️⃣ Exportar a Markdown
         GenerarInformeMd exportador = new GenerarInformeMd();
         String markdown = exportador.exportar(informe);
         Files.write(Paths.get("InformeRescate.md"), markdown.getBytes());
