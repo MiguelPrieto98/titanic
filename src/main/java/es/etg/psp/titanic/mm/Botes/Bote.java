@@ -12,10 +12,12 @@ public class Bote implements IBote {
         this.id = id;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public Map<String, Integer> generarPasajeros() throws InterruptedException {
         int total = random.nextInt(100) + 1;
         int mujeres = random.nextInt(total + 1);
@@ -28,10 +30,15 @@ public class Bote implements IBote {
         pasajeros.put("Varones", varones);
         pasajeros.put("Niños", ninos);
 
-        int delay = 2000 + random.nextInt(4000);
-        Thread.sleep(delay);
+        simularTiempoConteo();
 
         return pasajeros;
+    }
+
+    @Override
+    public void simularTiempoConteo() throws InterruptedException {
+        int delay = 2000 + random.nextInt(4000); // 2 a 6 segundos
+        Thread.sleep(delay);
     }
 
 }
