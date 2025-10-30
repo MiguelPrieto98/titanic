@@ -23,12 +23,29 @@ public class BoteProcess {
         return convertirLineaAHashMap(linea);
     }
 
-    private static Map<String, Integer> convertirLineaAHashMap(String linea) {
-        Map<String, Integer> pasajeros = new HashMap<>();
-        for (String kv : linea.split(",")) {
-            String[] partes = kv.split("=");
-            pasajeros.put(partes[0], Integer.parseInt(partes[1]));
-        }
-        return pasajeros;
+    public static Map<String, Integer> convertirLineaAHashMap(String linea) {
+    if (linea == null || linea.trim().isEmpty()) {
+        throw new IllegalArgumentException("La línea no puede ser nula ni vacía");
     }
+
+    Map<String, Integer> pasajeros = new HashMap<>();
+
+    for (String kv : linea.split(",")) {
+        String[] partes = kv.split("=");
+
+        if (partes.length != 2) {
+            throw new IllegalArgumentException(
+                "Formato inválido en el fragmento: '" + kv + "'. Debe ser clave=valor");
+        }
+
+        try {
+            pasajeros.put(partes[0], Integer.parseInt(partes[1]));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                "Valor no numérico para la clave '" + partes[0] + "': " + partes[1], e);
+        }
+    }
+
+    return pasajeros;
+}
 }

@@ -2,6 +2,8 @@ package es.etg.psp.titanic.mm.ServicioEmergencia;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import es.etg.psp.titanic.mm.Informes.*;
@@ -36,7 +38,14 @@ public class ServicioEmergencia implements IServicioEmergencia {
     public void exportarInforme(List<Map<String, Integer>> datos) throws Exception {
         Informes informe = GeneradorInformeRescate.generar(datos);
         String markdown = new GenerarInformeMd().exportar(informe);
-        Files.write(Paths.get("InformeRescate.md"), markdown.getBytes());
+
+        LocalDateTime fecha = LocalDateTime.now();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm");
+        String fechaFormateada = fecha.format(formato);
+
+        String nombreArchivo = "InformeRescate " + fechaFormateada + ".md";
+
+        Files.write(Paths.get(nombreArchivo), markdown.getBytes());
     }
 
     public static void main(String[] args) throws Exception {
