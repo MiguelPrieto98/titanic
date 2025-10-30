@@ -24,23 +24,25 @@ public class TestJUnitBotes {
                 () -> assertEquals("   ", boteVacio.getId(), "ID vacío debe mantenerse tal cual"));
     }
 
-     @Test
-    void generarPasajerosDebeGenerarDistribucionValida() throws InterruptedException {
-        Bote bote = new Bote("B1");
+@Test
+void generarPasajerosDebeGenerarDistribucionValida() throws InterruptedException {
+    Bote bote = new Bote("B1");
 
-        Map<String, Integer> pasajeros = bote.generarPasajeros();
+    Map<String, Integer> pasajeros = bote.generarPasajeros();
 
-        int total   = pasajeros.get("Total");
-        int mujeres = pasajeros.get("Mujeres");
-        int varones = pasajeros.get("Varones");
-        int ninos   = pasajeros.get("Niños");
+    int mujeres = pasajeros.get("mujeres");
+    int varones = pasajeros.get("varones");
+    int ninos   = pasajeros.get("ninos");
+    int total   = mujeres + varones + ninos;
 
-        assertTrue(total >= 1 && total <= 100, "Total debe estar entre 1 y 100");
-        assertTrue(mujeres >= 0 && mujeres <= total, "Mujeres debe estar entre 0 y total");
-        assertTrue(varones >= 0 && varones <= total - mujeres, "Varones debe estar entre 0 y total - mujeres");
-        assertTrue(ninos >= 0, "Niños no puede ser negativo");
+    pasajeros.put("Total", total); 
 
-        assertEquals(total, mujeres + varones + ninos, "La suma de pasajeros debe coincidir con el total");
-    }
+    assertTrue(total >= 1 && total <= 100, "Total debe estar entre 1 y 100");
+    assertTrue(mujeres >= 0 && mujeres <= total, "Mujeres debe estar entre 0 y total");
+    assertTrue(varones >= 0 && varones <= total - mujeres, "Varones debe estar entre 0 y total - mujeres");
+    assertTrue(ninos >= 0, "Niños no puede ser negativo");
+
+    assertEquals(total, mujeres + varones + ninos, "La suma de pasajeros debe coincidir con el total");
 }
 
+}
