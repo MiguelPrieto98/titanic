@@ -17,30 +17,26 @@ public class GeneradorInformeRescate {
             int mujeres = registro.get("mujeres");
             int varones = registro.get("varones");
             int ninos = registro.get("ninos");
-            int total = mujeres + varones + ninos;
 
             totalMujeres += mujeres;
             totalVarones += varones;
             totalNinos += ninos;
 
-            String contenido = "- Total Salvados: " + total + "\n"
-                             + "  - Mujeres: " + mujeres + "\n"
-                             + "  - Varones: " + varones + "\n"
-                             + "  - Niños: " + ninos;
-
+            String contenido = generarContenido(mujeres, varones, ninos);
             informe.agregarSeccion(new Seccion("Bote " + codigo, contenido));
         }
 
-        int totalSalvados = totalMujeres + totalVarones + totalNinos;
-
-        String contenidoResumen = "- Total Salvados: " + totalSalvados + "\n"
-                                + "  - Mujeres: " + totalMujeres + "\n"
-                                + "  - Varones: " + totalVarones + "\n"
-                                + "  - Niños: " + totalNinos;
-
-        Seccion resumen = new Seccion("Total", contenidoResumen);
-        informe.agregarSeccion(resumen);
+        String contenidoResumen = generarContenido(totalMujeres, totalVarones, totalNinos);
+        informe.agregarSeccion(new Seccion("Total", contenidoResumen));
 
         return informe;
+    }
+
+    private static String generarContenido(int mujeres, int varones, int ninos) {
+        int total = mujeres + varones + ninos;
+        return String.format(
+            "- Total Salvados: %d\n  - Mujeres: %d\n  - Varones: %d\n  - Niños: %d",
+            total, mujeres, varones, ninos
+        );
     }
 }
