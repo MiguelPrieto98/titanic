@@ -1,4 +1,4 @@
-package es.etg.psp.titanic.TestTitanic.ServicioEmergencia;
+package es.etg.psp.titanic.TestTitanic.ServicioEmergencia.TestBoteProcess;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import es.etg.psp.titanic.mm.ServicioEmergencia.BoteProcess;
 
-public class TestJUnitServicioEmergencia {
+public class TestJUnitBoteProcess {
 
     private String lineaValida;
 
