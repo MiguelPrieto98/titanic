@@ -4,9 +4,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import es.etg.psp.titanic.mm.Informes.*;
+import es.etg.psp.titanic.mm.Informes.GeneradorInformeRescate;
+import es.etg.psp.titanic.mm.Informes.GenerarInformeMd;
+import es.etg.psp.titanic.mm.Informes.Informes;
 
 public class ServicioEmergencia implements IServicioEmergencia {
 
@@ -40,7 +46,7 @@ public class ServicioEmergencia implements IServicioEmergencia {
         String markdown = new GenerarInformeMd().exportar(informe);
 
         LocalDateTime fecha = LocalDateTime.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm");
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm");
         String fechaFormateada = fecha.format(formato);
 
         String nombreArchivo = "InformeRescate " + fechaFormateada + ".md";
