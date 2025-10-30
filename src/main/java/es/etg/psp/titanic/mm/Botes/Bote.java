@@ -25,7 +25,7 @@ public class Bote implements IBote {
         int ninos = total - mujeres - varones;
 
         Map<String, Integer> pasajeros = new HashMap<>();
-        pasajeros.put("codigo", Integer.parseInt(id.replaceAll("\\D", ""))); // extrae el número del id
+        pasajeros.put("codigo", Integer.parseInt(id.replaceAll("\\D", ""))); 
         pasajeros.put("mujeres", mujeres);
         pasajeros.put("varones", varones);
         pasajeros.put("ninos", ninos);
@@ -37,7 +37,7 @@ public class Bote implements IBote {
 
     @Override
     public void simularTiempoConteo() throws InterruptedException {
-        int delay = 2000 + random.nextInt(4000); // 2 a 6 segundos
+        int delay = 2000 + random.nextInt(4000); 
         Thread.sleep(delay);
     }
 
