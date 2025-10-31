@@ -12,6 +12,12 @@ import es.etg.psp.titanic.mm.Titanic.Informes.Informes;
 
 public class ServicioEmergencia implements IServicioEmergencia {
 
+    private static final int NUM_BOTES = 20;
+    private static final String FORMATO_ID = "B%02d";
+    private static final String FORMATO_FECHA = "dd-MM-yyyy_HH:mm";
+    private static final String TITULO_INFORME = "InformeRescate";
+    private static final String EXTENSION_INFORME = ".md";
+
     @Override
     public void iniciarSimulacion() throws Exception {
         Map<String, Map<String, Integer>> resultados = ejecutarBotes();
@@ -23,11 +29,11 @@ public class ServicioEmergencia implements IServicioEmergencia {
     public Map<String, Map<String, Integer>> ejecutarBotes() throws Exception {
         Map<String, Map<String, Integer>> resultados = new HashMap<>();
 
-        final int NUM_BOTES = 20;
         for (int i = 0; i < NUM_BOTES; i++) {
-            String id = String.format("B%02d", i);
+            String id = String.format(FORMATO_ID, i);
             resultados.put(id, BoteProcess.obtenerPasajeros(id));
         }
+
         return resultados;
     }
 
@@ -41,13 +47,14 @@ public class ServicioEmergencia implements IServicioEmergencia {
         Informes informe = GeneradorInformeRescate.generar(datos);
         String markdown = new GenerarInformeMd().exportar(informe);
 
-        LocalDateTime fecha = LocalDateTime.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm");
-        String fechaFormateada = fecha.format(formato);
-
-        String nombreArchivo = "InformeRescate " + fechaFormateada + ".md";
-
+        String nombreArchivo = generarNombreArchivo();
         Files.write(Paths.get(nombreArchivo), markdown.getBytes());
+    }
+
+    private String generarNombreArchivo() {
+        LocalDateTime fecha = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern(FORMATO_FECHA);
+        return TITULO_INFORME + fecha.format(formato) + EXTENSION_INFORME;
     }
 
     public static void main(String[] args) throws Exception {

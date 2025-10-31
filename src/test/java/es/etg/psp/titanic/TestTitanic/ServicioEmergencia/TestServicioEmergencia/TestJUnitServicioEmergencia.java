@@ -1,6 +1,7 @@
 package es.etg.psp.titanic.TestTitanic.ServicioEmergencia.TestServicioEmergencia;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
@@ -10,33 +11,54 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.etg.psp.titanic.mm.Titanic.ServicioEmergencia.ServicioEmergencia;
 
 public class TestJUnitServicioEmergencia {
-    
-@Test
-void procesarResultadosOrdenaClaves() {
-    ServicioEmergencia servicio = new ServicioEmergencia();
-    Map<String, Map<String,Integer>> entrada = new HashMap<>();
-    entrada.put("B10", Map.of());
-    entrada.put("B02", Map.of());
-    entrada.put("B01", Map.of());
 
-    Map<String, Map<String,Integer>> salida = servicio.procesarResultados(entrada);
-    assertEquals(List.of("B01","B02","B10"), new ArrayList<>(salida.keySet()));
-}
+    private static final String ARCHIVO_INFORME_PREFIX = "InformeRescate ";
+    private static final String BOTE_1 = "B01";
+    private static final String BOTE_2 = "B02";
+    private static final String BOTE_10 = "B10";
+    private static final String MENSAJE_ARCHIVO_NO_VACIO = "El archivo generado no debe estar vacío";
+    private static final String PUNTO=".";
+    private ServicioEmergencia servicio;
 
-@Test
-void exportarInformeListaVaciaCreaArchivo() throws Exception {
-    ServicioEmergencia servicio = new ServicioEmergencia();
-    servicio.exportarInforme(new ArrayList<>());
+    @BeforeEach
+    void setUp() {
+        servicio = new ServicioEmergencia();
+    }
 
-    boolean existe = Files.list(Paths.get("."))
-        .anyMatch(p -> p.getFileName().toString().startsWith("InformeRescate "));
-    
-    assertTrue(existe);
-}
+    @Test
+    void procesarResultadosOrdenaClaves() {
+        Map<String, Map<String, Integer>> entrada = new HashMap<>();
+        entrada.put(BOTE_10, Map.of());
+        entrada.put(BOTE_2, Map.of());
+        entrada.put(BOTE_1, Map.of());
 
+        Map<String, Map<String, Integer>> salida = servicio.procesarResultados(entrada);
+
+        List<String> clavesEsperadas = List.of(BOTE_1, BOTE_2, BOTE_10);
+        assertEquals(clavesEsperadas, new ArrayList<>(salida.keySet()));
+    }
+
+    @Test
+    void exportarInformeListaVaciaArchivoNoVacio() throws Exception {
+        servicio.exportarInforme(new ArrayList<>());
+
+        var archivo = Files.list(Paths.get(PUNTO))
+                .filter(p -> p.getFileName().toString().startsWith(ARCHIVO_INFORME_PREFIX))
+                .findFirst()
+                .orElseThrow();
+
+        assertTrue(Files.size(archivo) > 0, MENSAJE_ARCHIVO_NO_VACIO);
+        Files.deleteIfExists(archivo);
+    }
+
+    @Test
+    void exportarInformeConNullLanzaExcepcion() {
+        assertThrows(NullPointerException.class, () -> servicio.exportarInforme(null));
+    }
 }
