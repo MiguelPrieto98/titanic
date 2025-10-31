@@ -12,6 +12,8 @@ public class BoteProcess {
     private static final String VALOR_NO_NUMERICO = "Valor no numérico para la clave '%s': %s";
     private static final String SEPARADOR_CLAVE_VALOR = "=";
     private static final String SEPARADOR_ENTRADA = ",";
+    private static final String ERROR_EJECUCION= "\"Error al ejecutar el bote: \n";
+    private static final String ERROR_BOTES= "El bote no devolvió datos";
 
     public static Map<String, Integer> obtenerPasajeros(String id) throws Exception {
 
@@ -28,7 +30,7 @@ public class BoteProcess {
         String linea;
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(process.getInputStream()))) {
-            linea = reader.readLine(); 
+            linea = reader.readLine();
         }
 
         int exitCode = process.waitFor();
@@ -40,10 +42,12 @@ public class BoteProcess {
                 while ((errorLine = errorReader.readLine()) != null) {
                     errores.append(errorLine).append("\n");
                 }
-                throw new RuntimeException("Error al ejecutar el bote: \n" + errores);
+                throw new RuntimeException(ERROR_EJECUCION + errores);
             }
         }
-
+        if (linea == null || linea.trim().isEmpty()) {
+            throw new RuntimeException(ERROR_BOTES);
+        }
         return convertirLineaAHashMap(linea);
     }
 
