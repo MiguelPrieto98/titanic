@@ -14,8 +14,8 @@ public class ServicioEmergencia implements IServicioEmergencia {
 
     private static final int NUM_BOTES = 20;
     private static final String FORMATO_ID = "B%02d";
-    private static final String FORMATO_FECHA = "dd-MM-yyyy_HH:mm";
-    private static final String TITULO_INFORME = "InformeRescate";
+    private static final String FORMATO_FECHA = "dd-MM-yyyy_HH-mm";
+    private static final String TITULO_INFORME = "informes/InformeRescate";
     private static final String EXTENSION_INFORME = ".md";
 
     @Override

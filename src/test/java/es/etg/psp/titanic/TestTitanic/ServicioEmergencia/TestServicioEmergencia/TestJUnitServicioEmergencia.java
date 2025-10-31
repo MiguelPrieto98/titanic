@@ -18,14 +18,14 @@ import es.etg.psp.titanic.mm.Titanic.ServicioEmergencia.ServicioEmergencia;
 
 public class TestJUnitServicioEmergencia {
 
-    private static final String ARCHIVO_INFORME_PREFIX = "InformeRescate ";
     private static final String BOTE_1 = "B01";
     private static final String BOTE_2 = "B02";
     private static final String BOTE_10 = "B10";
+    private static final String CARPETA_INFORMES = "informes";
+    private static final String PREFIJO_INFORME = "InformeRescate";
     private static final String MENSAJE_ARCHIVO_NO_VACIO = "El archivo generado no debe estar vacío";
-    private static final String PUNTO=".";
     private ServicioEmergencia servicio;
-
+    
     @BeforeEach
     void setUp() {
         servicio = new ServicioEmergencia();
@@ -46,12 +46,15 @@ public class TestJUnitServicioEmergencia {
 
     @Test
     void exportarInformeListaVaciaArchivoNoVacio() throws Exception {
+
+        Files.createDirectories(Paths.get(CARPETA_INFORMES));
+
         servicio.exportarInforme(new ArrayList<>());
 
-        var archivo = Files.list(Paths.get(PUNTO))
-                .filter(p -> p.getFileName().toString().startsWith(ARCHIVO_INFORME_PREFIX))
+        var archivo = Files.list(Paths.get(CARPETA_INFORMES))
+                .filter(p -> p.getFileName().toString().startsWith(PREFIJO_INFORME))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new AssertionError("No se generó el informe"));
 
         assertTrue(Files.size(archivo) > 0, MENSAJE_ARCHIVO_NO_VACIO);
         Files.deleteIfExists(archivo);
