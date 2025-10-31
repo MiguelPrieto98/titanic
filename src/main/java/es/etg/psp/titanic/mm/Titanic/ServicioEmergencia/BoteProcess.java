@@ -14,17 +14,35 @@ public class BoteProcess {
     private static final String SEPARADOR_ENTRADA = ",";
 
     public static Map<String, Integer> obtenerPasajeros(String id) throws Exception {
-        ProcessBuilder pb = new ProcessBuilder(
+
+        String[] botes = {
                 "java",
                 "-cp",
                 "target/classes",
                 "es.etg.psp.titanic.mm.Botes.EjecutarBote",
-                id);
+                id
+        };
 
-        Process process = pb.start();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String linea = reader.readLine();
-        process.waitFor();
+        Process process = Runtime.getRuntime().exec(botes);
+
+        String linea;
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()))) {
+            linea = reader.readLine(); 
+        }
+
+        int exitCode = process.waitFor();
+        if (exitCode != 0) {
+            try (BufferedReader errorReader = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()))) {
+                StringBuilder errores = new StringBuilder();
+                String errorLine;
+                while ((errorLine = errorReader.readLine()) != null) {
+                    errores.append(errorLine).append("\n");
+                }
+                throw new RuntimeException("Error al ejecutar el bote: \n" + errores);
+            }
+        }
 
         return convertirLineaAHashMap(linea);
     }
@@ -35,8 +53,8 @@ public class BoteProcess {
         }
 
         Map<String, Integer> pasajeros = new HashMap<>();
-        for (String kv : linea.split(SEPARADOR_ENTRADA)) { 
-            String[] partes = kv.split(SEPARADOR_CLAVE_VALOR); 
+        for (String kv : linea.split(SEPARADOR_ENTRADA)) {
+            String[] partes = kv.split(SEPARADOR_CLAVE_VALOR);
 
             if (partes.length != 2) {
                 throw new IllegalArgumentException(String.format(FORMATO_INVALIDO, kv));
