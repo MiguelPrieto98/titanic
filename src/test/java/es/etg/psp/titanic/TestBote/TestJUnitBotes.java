@@ -48,7 +48,7 @@ public class TestJUnitBotes {
 
     @Test
     void testConstructorConVariasEntradas() {
-        String idValido = String.format("B%02d", 3); // genera B03
+        String idValido = String.format("B%02d", 3); 
         Bote boteValido = new Bote(idValido);
         Bote boteNulo = new Bote(null);
         Bote boteVacio = new Bote("  ");
@@ -62,7 +62,7 @@ public class TestJUnitBotes {
     @Test
     void generarPasajerosIncluyeCodigoCorrecto() throws InterruptedException {
         int numeroBote = 7;
-        String id = String.format("B%02d", numeroBote); // genera B07
+        String id = String.format("B%02d", numeroBote); 
         Bote bote = new Bote(id);
         Map<String, Integer> pasajeros = bote.generarPasajeros();
 
