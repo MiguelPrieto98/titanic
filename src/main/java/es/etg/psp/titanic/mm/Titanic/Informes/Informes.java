@@ -1,4 +1,4 @@
-package es.etg.psp.titanic.mm.Informes;
+package es.etg.psp.titanic.mm.Titanic.Informes;
 import java.util.ArrayList;
 import java.util.List;
 
