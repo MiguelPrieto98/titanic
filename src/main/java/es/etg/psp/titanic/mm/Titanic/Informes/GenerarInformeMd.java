@@ -1,4 +1,4 @@
-package es.etg.psp.titanic.mm.Informes;
+package es.etg.psp.titanic.mm.Titanic.Informes;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

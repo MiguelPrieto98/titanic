@@ -1,4 +1,4 @@
-package es.etg.psp.titanic.mm.ServicioEmergencia;
+package es.etg.psp.titanic.mm.Titanic.ServicioEmergencia;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import es.etg.psp.titanic.mm.Informes.*;
+import es.etg.psp.titanic.mm.Titanic.Informes.GeneradorInformeRescate;
+import es.etg.psp.titanic.mm.Titanic.Informes.GenerarInformeMd;
+import es.etg.psp.titanic.mm.Titanic.Informes.Informes;
 
 public class ServicioEmergencia implements IServicioEmergencia {
 

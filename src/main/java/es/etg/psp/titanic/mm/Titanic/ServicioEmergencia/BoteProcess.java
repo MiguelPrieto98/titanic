@@ -1,4 +1,4 @@
-package es.etg.psp.titanic.mm.ServicioEmergencia;
+package es.etg.psp.titanic.mm.Titanic.ServicioEmergencia;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -12,7 +12,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import es.etg.psp.titanic.mm.ServicioEmergencia.ServicioEmergencia;
+import es.etg.psp.titanic.mm.Titanic.ServicioEmergencia.ServicioEmergencia;
 
 public class TestJUnitServicioEmergencia {
     
