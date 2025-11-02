@@ -210,7 +210,7 @@ Cada bote se ejecuta como un proceso independiente de Java (Process) desde BoteP
 
 - Se generaron mensajes de error claros y excepciones manejadas para cada fallo en la ejecución de un bote.
 
-## 3. Generación de informes
+### 3. Generación de informes
 
 **Problema**:
 
