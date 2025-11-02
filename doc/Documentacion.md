@@ -28,6 +28,10 @@
 
 [![](https://img.plantuml.biz/plantuml/svg/NP3H2i8m34NV2_s7i2yPmXxsDlGBkYwEQjUCj1D1_7VhqWepVGYSUsyIsiPaE6sBrqghrTYxcH6Q2_B3MKSm8NGByep1EjE0YL2beNXVMa4k6cze4pHzoA9XG0yhayL8UwhWpWy2Zw4kjotV0ICbZ7kWejEN7Dqo8hizHM2Ccqzc8ebLxVp3VvkUAt6I-rou4YyewmhlXMdrrgh5C9MFaVS1)](https://editor.plantuml.com/uml/NP3H2i8m34NV2_s7i2yPmXxsDlGBkYwEQjUCj1D1_7VhqWepVGYSUsyIsiPaE6sBrqghrTYxcH6Q2_B3MKSm8NGByep1EjE0YL2beNXVMa4k6cze4pHzoA9XG0yhayL8UwhWpWy2Zw4kjotV0ICbZ7kWejEN7Dqo8hizHM2Ccqzc8ebLxVp3VvkUAt6I-rou4YyewmhlXMdrrgh5C9MFaVS1)
 
+[![](https://img.plantuml.biz/plantuml/svg/LOuz3e0m24Rt9hq3wKaSN3m6LZJ-WQau6UzkLM8K5l8zNg1O5PDky-ITTml64Jk2K74hQQO0k8BDi5yRa4lgWQ92A371XL05eh0IzutSIYO6tlolTiIKijv_xbXcaNU7TmLnOwyzVG80)](https://editor.plantuml.com/uml/LOuz3e0m24Rt9hq3wKaSN3m6LZJ-WQau6UzkLM8K5l8zNg1O5PDky-ITTml64Jk2K74hQQO0k8BDi5yRa4lgWQ92A371XL05eh0IzutSIYO6tlolTiIKijv_xbXcaNU7TmLnOwyzVG80)
+
+[![](https://img.plantuml.biz/plantuml/svg/LO_H2eCm34NV2_s7u9V848QlsnV4xaxgR5FI-ZJyzpahOoOlkJVt1DBcmbgMC5jZJMBtuX7KNAGWDyIPzedUtorj9SC4LwYvmVd1A_NTdZfatvrJLqGeAoNEF46bdXoh-pFFpDs7PTwOuX6I469HK59noFAF-_WK3R1cjQP5V1mlrFu0)](https://editor.plantuml.com/uml/LO_H2eCm34NV2_s7u9V848QlsnV4xaxgR5FI-ZJyzpahOoOlkJVt1DBcmbgMC5jZJMBtuX7KNAGWDyIPzedUtorj9SC4LwYvmVd1A_NTdZfatvrJLqGeAoNEF46bdXoh-pFFpDs7PTwOuX6I469HK59noFAF-_WK3R1cjQP5V1mlrFu0)
+
 ### Protocolo de comunicacion
 ServicioEmergencia pide el número de ID del bote mediante la entrada estándar (System.in). Luego lanza el proceso Botes usando Runtime.getRuntime().exec(), y le envía el ID del bote junto con el contenido del bote a través del OutputStream del proceso, que se conecta con la entrada estándar (System.in) de Botes.
 Botes recibe esa información por su InputStream, le da formato, y lo imprime por su salida estándar (System.out).
@@ -93,7 +97,7 @@ Su objetivo es coordinar la ejecución de los botes, procesar los datos obtenido
 #### **IServicioEmergencia**
 
 ```java
-void iniciarSimulacion() throws Exception
+void iniciarProceso() throws Exception
 Map<String, Map<String, Integer>> ejecutarBotes() throws Exception
 Map<String, Map<String, Integer>> procesarResultados(Map<String, Map<String, Integer>> resultados)
 void exportarInforme(List<Map<String, Integer>> datos) throws Exception
@@ -110,7 +114,7 @@ Clase principal que implementa la interfaz. Controla toda la lógica de la aplic
 - **Metodos principales**:
 
     ```java
-    iniciarSimulacion()
+    iniciarProceso()
     ```
     Coordina todo el proceso: ejecutar botes, ordenar resultados y exportar el informe.
 
