@@ -44,7 +44,7 @@ public class TestJUnitServicioEmergencia {
     }
 
     @Test
-    void exportarInformeListaVaciaArchivoNoVacio() throws Exception {
+    void exportarInformeVacio() throws Exception {
 
         Files.createDirectories(Paths.get(CARPETA_INFORMES));
 
@@ -60,7 +60,7 @@ public class TestJUnitServicioEmergencia {
     }
 
     @Test
-    void exportarInformeConNullLanzaExcepcion() {
+    void exportarInformeConNull() {
         assertThrows(NullPointerException.class, () -> servicio.exportarInforme(null));
     }
 }

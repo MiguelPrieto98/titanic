@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import es.etg.psp.titanic.mm.Titanic.ServicioEmergencia.BoteProcess;
 
-public class TestJUnitServicioEmergencia {
+public class TestJUnitBoteProcess {
 
     private static final String LINEA_VALIDA = "mujeres=5,varones=10,ninos=2";
     private static final String LINEA_VACIA = "";

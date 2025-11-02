@@ -3,6 +3,9 @@
 ## Índice
 - [Análisis del Problema](#analisis-del-problema)
 - [Diseño de la solución](#diseño-de-la-solucion)
+    - [Arquitectura](#arquitectura)
+    - [Componentes](#componentes)
+    - [Protocolo de comunicación](#protocolo-de-comunicaicón)
 - [Manual de usuario](#manual-de-usuario)
 - [Elementos destacables del desarrollo](#elemantos-destacables-del-desarrollo)
   - [Botes](#botes)
@@ -16,13 +19,44 @@
 - Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el conteo se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres mujeres y niños.
 - Para calcular el numero de pasajeros de cada bote se genera un numero aleatorio de 1 a 100 y se reparte entre mujeres hombre y niños y esto se manda al informe.
 - el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
+
 ## Diseño de la solucion
 
 ### Arquitectura
 
+```mermaid
+@startuml
+left to right direction
+
+object "Titanic" as Titanic
+object Bote
+
+Titanic --> Bote : Envía ID del bote
+Bote ..left..> Titanic : Devuelve información del bote
+@enduml
+```
+
 ### Componentes
 
-### Protocolo de comunicaicón
+### Protocolo de comunicacIón
+
+### Plan de pruebas
+
+En cada apartado deberiamos realizar las sigueiten comprobaciones:
+
+#### Bote
+
+- Comprobar que el total de pasajeros  este dentro de un rango válido.
+- Los valores individuales (mujeres, varones, niños) no deben ser negativos
+- Las claves obligatorias deben existir
+- El código interno del bote debe coincidir con su ID
+- El constructor debe mantener el ID proporcionado
+
+#### Servicio Emergencia
+- Una línea vacia debe comprobar excepción
+- Una linea nula debe provocar excepción
+- 
+
 
 
 ## Manual de usuario
