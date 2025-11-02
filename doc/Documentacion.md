@@ -18,6 +18,13 @@
 - el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
 ## Diseño de la solucion
 
+### Arquitectura
+
+### Componentes
+
+### Protocolo de comunicaicón
+
+
 ## Manual de usuario
 
 El Manual de Usuario se encuentra disponible como documento independiente.
