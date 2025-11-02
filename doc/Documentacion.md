@@ -22,43 +22,15 @@
 
 ## Diseño de la solucion
 
-### Arquitectura
-
-```mermaid
-@startuml
-left to right direction
-
-object "Titanic" as Titanic
-object Bote
-
-Titanic --> Bote : Envía ID del bote
-Bote ..left..> Titanic : Devuelve información del bote
-@enduml
-```
-
-### Componentes
-
-### Protocolo de comunicacIón
-
-### Plan de pruebas
-
-En cada apartado deberiamos realizar las sigueiten comprobaciones:
-
-#### Bote
-
-- Comprobar que el total de pasajeros  este dentro de un rango válido.
-- Los valores individuales (mujeres, varones, niños) no deben ser negativos
-- Las claves obligatorias deben existir
-- El código interno del bote debe coincidir con su ID
-- El constructor debe mantener el ID proporcionado
-
-#### Servicio Emergencia
-- Una línea vacia debe comprobar excepción
-- Una linea nula debe provocar excepción
-- 
+[![](https://img.plantuml.biz/plantuml/svg/u-LoA2v9B2efpStXvSfFoafDBb5moYz9XNEKGZ9B4lCoavKK4eiLe6nUBbuka285tQBCz8mINJkOX8ALWajgMMbgJbcgGcPUMdvHRc9ovk7DUGefgJaAIM1ZOIfrWRh0PbWfkEQL7LwRgE3fWgJC8JKl1UWc0000)](https://editor.plantuml.com/uml/u-LoA2v9B2efpStXvSfFoafDBb5moYz9XNEKGZ9B4lCoavKK4eiLe6nUBbuka285tQBCz8mINJkOX8ALWajgMMbgJbcgGcPUMdvHRc9ovk7DUGefgJaAIM1ZOIfrWRh0PbWfkEQL7LwRgE3fWgJC8JKl1UWc0000)
 
 
 
+### Protocolo de comunicacion
+ServicioEmergencia pide el número de ID del bote mediante la entrada estándar (System.in). Luego lanza el proceso Botes usando Runtime.getRuntime().exec(), y le envía el ID del bote junto con el contenido del bote a través del OutputStream del proceso, que se conecta con la entrada estándar (System.in) de Botes.
+Botes recibe esa información por su InputStream, le da formato, y lo imprime por su salida estándar (System.out).
+ServicioEmergencia recoge esa salida a través del InputStream del proceso Botes, y la redirige al proceso Informes, también lanzado con Runtime.exec(), enviándola por el OutputStream que conecta con la entrada estándar de Informes.
+Informes genera el informe a partir de esa entrada, lo imprime por su salida estándar (System.out), pero no devuelve nada directamente a ServicioEmergencia, ya que el flujo termina con la salida del informe.
 ## Manual de usuario
 
 El Manual de Usuario se encuentra disponible como documento independiente.
