@@ -21,11 +21,11 @@
 - el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
 
 ## Diseño de la solucion
-
+### Arquitectura 
 [![](https://img.plantuml.biz/plantuml/svg/NOyz3i8m34RtIBc3rRqz04DLeJAmCN01axZ58arGulPMJ1oX5wCgFmgLbq_MUvQ_9Wb66GUdbQDEG094xgy2bYCPuU2rqkgEveOzGR4FGga0JB2cqtkV0MSMz6nMv9D_a5Qv15LLRn3OGKlJI6uYOD-5EA3X-Ud1aeFBucgr4Sgo_ljakN3mq_n0EBQPrP2tQyVll000)](https://editor.plantuml.com/uml/NOyz3i8m34RtIBc3rRqz04DLeJAmCN01axZ58arGulPMJ1oX5wCgFmgLbq_MUvQ_9Wb66GUdbQDEG094xgy2bYCPuU2rqkgEveOzGR4FGga0JB2cqtkV0MSMz6nMv9D_a5Qv15LLRn3OGKlJI6uYOD-5EA3X-Ud1aeFBucgr4Sgo_ljakN3mq_n0EBQPrP2tQyVll000)
 
 [![](https://img.plantuml.biz/plantuml/svg/SoWkIImgAStDuUKgI4pEJanFLL0AoIn9pCjCLb98B5Q0iWEWSjMyN0f005SQd5fKbfcScQ-GaghWcfjQb9wQbvoP2DO9au9gHTEOcPUMNvIRMWnMwWdby7BLydBnSZcavgM0NGI30000)](https://editor.plantuml.com/uml/SoWkIImgAStDuUKgI4pEJanFLL0AoIn9pCjCLb98B5Q0iWEWSjMyN0f005SQd5fKbfcScQ-GaghWcfjQb9wQbvoP2DO9au9gHTEOcPUMNvIRMWnMwWdby7BLydBnSZcavgM0NGI30000)
-
+### Componentes 
 [![](https://img.plantuml.biz/plantuml/svg/NP3H2i8m34NV2_s7i2yPmXxsDlGBkYwEQjUCj1D1_7VhqWepVGYSUsyIsiPaE6sBrqghrTYxcH6Q2_B3MKSm8NGByep1EjE0YL2beNXVMa4k6cze4pHzoA9XG0yhayL8UwhWpWy2Zw4kjotV0ICbZ7kWejEN7Dqo8hizHM2Ccqzc8ebLxVp3VvkUAt6I-rou4YyewmhlXMdrrgh5C9MFaVS1)](https://editor.plantuml.com/uml/NP3H2i8m34NV2_s7i2yPmXxsDlGBkYwEQjUCj1D1_7VhqWepVGYSUsyIsiPaE6sBrqghrTYxcH6Q2_B3MKSm8NGByep1EjE0YL2beNXVMa4k6cze4pHzoA9XG0yhayL8UwhWpWy2Zw4kjotV0ICbZ7kWejEN7Dqo8hizHM2Ccqzc8ebLxVp3VvkUAt6I-rou4YyewmhlXMdrrgh5C9MFaVS1)
 
 [![](https://img.plantuml.biz/plantuml/svg/LOuz3e0m24Rt9hq3wKaSN3m6LZJ-WQau6UzkLM8K5l8zNg1O5PDky-ITTml64Jk2K74hQQO0k8BDi5yRa4lgWQ92A371XL05eh0IzutSIYO6tlolTiIKijv_xbXcaNU7TmLnOwyzVG80)](https://editor.plantuml.com/uml/LOuz3e0m24Rt9hq3wKaSN3m6LZJ-WQau6UzkLM8K5l8zNg1O5PDky-ITTml64Jk2K74hQQO0k8BDi5yRa4lgWQ92A371XL05eh0IzutSIYO6tlolTiIKijv_xbXcaNU7TmLnOwyzVG80)
@@ -37,6 +37,10 @@ ServicioEmergencia pide el número de ID del bote mediante la entrada estándar 
 Botes recibe esa información por su InputStream, le da formato, y lo imprime por su salida estándar (System.out).
 ServicioEmergencia recoge esa salida a través del InputStream del proceso Botes, y la redirige al proceso Informes, también lanzado con Runtime.exec(), enviándola por el OutputStream que conecta con la entrada estándar de Informes.
 Informes genera el informe a partir de esa entrada, lo imprime por su salida estándar (System.out), pero no devuelve nada directamente a ServicioEmergencia, ya que el flujo termina con la salida del informe.
+## Plan de pruebas 
+El plan de pruebas se encuentra disponible como documento independiente.
+Puede consultarse en el siguiente enlace:
+<a href="doc\Plan_de_pruebas.md">Plande pruebas </a>
 ## Manual de usuario
 
 El Manual de Usuario se encuentra disponible como documento independiente.
