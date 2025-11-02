@@ -19,7 +19,7 @@ public class ServicioEmergencia implements IServicioEmergencia {
     private static final String EXTENSION_INFORME = ".md";
 
     @Override
-    public void iniciarSimulacion() throws Exception {
+    public void iniciarProceso() throws Exception {
         Map<String, Map<String, Integer>> resultados = ejecutarBotes();
         resultados = procesarResultados(resultados);
         exportarInforme(new ArrayList<>(resultados.values()));
@@ -58,6 +58,6 @@ public class ServicioEmergencia implements IServicioEmergencia {
     }
 
     public static void main(String[] args) throws Exception {
-        new ServicioEmergencia().iniciarSimulacion();
+        new ServicioEmergencia().iniciarProceso();
     }
 }
