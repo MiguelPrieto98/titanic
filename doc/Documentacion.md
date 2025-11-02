@@ -18,6 +18,14 @@
 - el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
 ## Diseño de la solucion
 
+
+
+
+### Protocolo de informacion
+ServicioEmergencia pide el número de ID del bote mediante la entrada estándar (System.in). Luego lanza el proceso Botes usando Runtime.getRuntime().exec(), y le envía el ID del bote junto con el contenido del bote a través del OutputStream del proceso, que se conecta con la entrada estándar (System.in) de Botes.
+Botes recibe esa información por su InputStream, le da formato, y lo imprime por su salida estándar (System.out).
+ServicioEmergencia recoge esa salida a través del InputStream del proceso Botes, y la redirige al proceso Informes, también lanzado con Runtime.exec(), enviándola por el OutputStream que conecta con la entrada estándar de Informes.
+Informes genera el informe a partir de esa entrada, lo imprime por su salida estándar (System.out), pero no devuelve nada directamente a ServicioEmergencia, ya que el flujo termina con la salida del informe.
 ## Manual de usuario
 
 El Manual de Usuario se encuentra disponible como documento independiente.
