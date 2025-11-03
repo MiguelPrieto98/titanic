@@ -1,8 +1,8 @@
 # Plan de Pruebas del Proyecto Titanic
 
 ## 1. Introducción
+
 El presente plan de pruebas describe la estrategia y alcance de las pruebas unitarias desarrolladas para el proyecto **Titanic**, cuyo objetivo es validar la correcta funcionalidad de los módulos relacionados con la simulación del sistema de emergencia y rescate de botes salvavidas.  
-Las pruebas se han implementado utilizando **herramientas automatizadas de validación**, siguiendo buenas prácticas de verificación de comportamiento, control de errores y comprobación de integridad de datos.
 
 ---
 
@@ -41,7 +41,7 @@ No se incluyen pruebas de integración ni pruebas de interfaz gráfica. Todas la
 
 | Caso | Descripción | Resultado Esperado |
 |------|--------------|--------------------|
-| 1 | Se genera una distribución de pasajeros dentro de los límites permitidos. | El número total de pasajeros está dentro del rango esperado. |
+| 1 | Se comprueba que la distribución de pasajeros este dentro de los límites permitidos. | El número total de pasajeros está dentro del rango esperado. |
 | 2 | Se validan los identificadores asignados a cada bote. | Los identificadores se mantienen correctos y sin duplicados. |
 | 3 | Se comprueba que los datos generados incluyan toda la información necesaria. | Todos los campos requeridos están presentes y correctamente asignados. |
 
@@ -53,8 +53,8 @@ No se incluyen pruebas de integración ni pruebas de interfaz gráfica. Todas la
 | Caso | Descripción | Resultado Esperado |
 |------|--------------|--------------------|
 | 1 | Se transforma la información recibida en una estructura válida para el análisis. | Los datos se convierten correctamente sin pérdida de información. |
-| 2 | Se gestionan adecuadamente entradas vacías, incompletas o con formato incorrecto. | El sistema muestra errores controlados sin interrumpir el proceso. |
-| 3 | Se comprueba la consistencia de los totales de pasajeros procesados. | Las sumas coinciden con los valores esperados. |
+| 2 | Comprueba que se gestiona adecuadamente entradas vacías, incompletas o con formato incorrecto. | El sistema muestra errores controlados sin interrumpir el proceso. |
+| 3 | Se comprueba la consistencia del total de pasajeros procesados. | La suma coincide con los valores esperados. |
 
 ---
 

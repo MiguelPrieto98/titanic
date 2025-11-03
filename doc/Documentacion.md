@@ -16,7 +16,7 @@
   - [2. Comunicación con procesos externos](#2-comunicación-con-procesos-externos)
   - [3. Generación de informes](#3-generación-de-informes)
 ## Analisis del Problema 
-- Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el conteo se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres mujeres y niños.
+- Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el recuento se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres mujeres y niños.
 - Para calcular el numero de pasajeros de cada bote se genera un numero aleatorio de 1 a 100 y se reparte entre mujeres hombre y niños y esto se manda al informe.
 - el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
 
@@ -38,9 +38,10 @@
 [![](https://img.plantuml.biz/plantuml/svg/LO_H2eCm34NV2_s7u9V848QlsnV4xaxgR5FI-ZJyzpahOoOlkJVt1DBcmbgMC5jZJMBtuX7KNAGWDyIPzedUtorj9SC4LwYvmVd1A_NTdZfatvrJLqGeAoNEF46bdXoh-pFFpDs7PTwOuX6I469HK59noFAF-_WK3R1cjQP5V1mlrFu0)](https://editor.plantuml.com/uml/LO_H2eCm34NV2_s7u9V848QlsnV4xaxgR5FI-ZJyzpahOoOlkJVt1DBcmbgMC5jZJMBtuX7KNAGWDyIPzedUtorj9SC4LwYvmVd1A_NTdZfatvrJLqGeAoNEF46bdXoh-pFFpDs7PTwOuX6I469HK59noFAF-_WK3R1cjQP5V1mlrFu0)
 
 ### Protocolo de comunicacion
+
 ServicioEmergencia pide el número de ID del bote mediante la entrada estándar (System.in). Luego lanza el proceso Botes usando Runtime.getRuntime().exec(), y le envía el ID del bote junto con el contenido del bote a través del OutputStream del proceso, que se conecta con la entrada estándar (System.in) de Botes.
 Botes recibe esa información por su InputStream, le da formato, y lo imprime por su salida estándar (System.out).
-ServicioEmergencia recoge esa salida a través del InputStream del proceso Botes, y la redirige al proceso Informes, también lanzado con Runtime.exec(), enviándola por el OutputStream que conecta con la entrada estándar de Informes.
+ServicioEmergencia recoge esa salida a través del InputStream del proceso Botes, y la redirige al proceso Informes, enviándola por el OutputStream que conecta con la entrada estándar de Informes.
 Informes genera el informe a partir de esa entrada, lo imprime por su salida estándar (System.out), pero no devuelve nada directamente a ServicioEmergencia, ya que el flujo termina con la salida del informe.
 ## Plan de pruebas 
 El plan de pruebas se encuentra disponible como documento independiente.
