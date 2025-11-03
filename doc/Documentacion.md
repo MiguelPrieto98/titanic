@@ -16,15 +16,16 @@
   - [2. Comunicación con procesos externos](#2-comunicación-con-procesos-externos)
   - [3. Generación de informes](#3-generación-de-informes)
 ## Analisis del Problema 
-- Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el recuento se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres mujeres y niños.
-- Para calcular el numero de pasajeros de cada bote se genera un numero aleatorio de 1 a 100 y se reparte entre mujeres hombre y niños y esto se manda al informe.
-- el servicio de emergencia generar un informe apartir de la informacion recibida de cada bote y generando un informe individual de cada bote con el conteo total y el desglose de hombre mujeres y niños y al final un total general y un desglose del total por hombre mujeres y niños.
+- Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el recuento se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres, mujeres y niños.
+- Para calcular el número de pasajeros de cada bote se genera un número aleatorio de 1 a 100 y se reparte entre mujeres, hombre y niños y esto se manda al informe.
+- el servício de emergencia genera un informe apartir de la información recibida de cada bote y generando un informe individual de cada bote con el recuento total y el desglose de hombres, mujeres y niños y al final un total general y un desglose del total de hombres, mujeres y niños.
 
 ## Diseño de la solucion
 ### Arquitectura 
-[![](https://img.plantuml.biz/plantuml/svg/NOyz3i8m34RtIBc3rRqz04DLeJAmCN01axZ58arGulPMJ1oX5wCgFmgLbq_MUvQ_9Wb66GUdbQDEG094xgy2bYCPuU2rqkgEveOzGR4FGga0JB2cqtkV0MSMz6nMv9D_a5Qv15LLRn3OGKlJI6uYOD-5EA3X-Ud1aeFBucgr4Sgo_ljakN3mq_n0EBQPrP2tQyVll000)](https://editor.plantuml.com/uml/NOyz3i8m34RtIBc3rRqz04DLeJAmCN01axZ58arGulPMJ1oX5wCgFmgLbq_MUvQ_9Wb66GUdbQDEG094xgy2bYCPuU2rqkgEveOzGR4FGga0JB2cqtkV0MSMz6nMv9D_a5Qv15LLRn3OGKlJI6uYOD-5EA3X-Ud1aeFBucgr4Sgo_ljakN3mq_n0EBQPrP2tQyVll000)
 
-[![](https://img.plantuml.biz/plantuml/svg/SoWkIImgAStDuUKgI4pEJanFLL0AoIn9pCjCLb98B5Q0iWEWSjMyN0f005SQd5fKbfcScQ-GaghWcfjQb9wQbvoP2DO9au9gHTEOcPUMNvIRMWnMwWdby7BLydBnSZcavgM0NGI30000)](https://editor.plantuml.com/uml/SoWkIImgAStDuUKgI4pEJanFLL0AoIn9pCjCLb98B5Q0iWEWSjMyN0f005SQd5fKbfcScQ-GaghWcfjQb9wQbvoP2DO9au9gHTEOcPUMNvIRMWnMwWdby7BLydBnSZcavgM0NGI30000)
+[![](https://img.plantuml.biz/plantuml/svg/NSynZeD030NGVaxnHGy7e41ejTjliHVmpXXYPV14W-5MgTAbvMA9I28IkY_x-KjkHwDiqn1TvCvW2LdwWo58Pc-IrBaJ-IFrZE8h6Oy5QCIQVX_pRVydHYf-5S_yCkxz0bNLx01gVFCySPmPebtA0tbPBeh04V_9sEryMJRuwApne_Do9kXo7JWdI60rwSHJI7dhQLd3_TqR)](https://editor.plantuml.com/uml/NSynZeD030NGVaxnHGy7e41ejTjliHVmpXXYPV14W-5MgTAbvMA9I28IkY_x-KjkHwDiqn1TvCvW2LdwWo58Pc-IrBaJ-IFrZE8h6Oy5QCIQVX_pRVydHYf-5S_yCkxz0bNLx01gVFCySPmPebtA0tbPBeh04V_9sEryMJRuwApne_Do9kXo7JWdI60rwSHJI7dhQLd3_TqR)
+
+[![](https://img.plantuml.biz/plantuml/svg/NOyn3i8m34NtIBd3L_TUW05rOM13WWkOr2qMRO8IqmLn92QEq8j1Im2fzcBh__SjLqafwhNlhAd-OyUDGWEYj2T5BP6TIl3MNCYTgMKK1r7ouWfGGfvtMRjPWtVzh7kEWpW9g1cRdcFBtWdDv5VAw08KtuJOSvgjsxnOSxV6cWM9ibp_B5Y1_J0-29y4SZ8-_NI-2md7e5DAnRwUVvtw1G00)](https://editor.plantuml.com/uml/NOyn3i8m34NtIBd3L_TUW05rOM13WWkOr2qMRO8IqmLn92QEq8j1Im2fzcBh__SjLqafwhNlhAd-OyUDGWEYj2T5BP6TIl3MNCYTgMKK1r7ouWfGGfvtMRjPWtVzh7kEWpW9g1cRdcFBtWdDv5VAw08KtuJOSvgjsxnOSxV6cWM9ibp_B5Y1_J0-29y4SZ8-_NI-2md7e5DAnRwUVvtw1G00)
 ### Componentes 
 
 #### Titanic
@@ -46,7 +47,8 @@ Informes genera el informe a partir de esa entrada, lo imprime por su salida est
 ## Plan de pruebas 
 El plan de pruebas se encuentra disponible como documento independiente.
 Puede consultarse en el siguiente enlace:
-<a href="doc\Plan_de_pruebas.md">Plande pruebas </a>
+<a href="doc\Plan_de_pruebas.md">Plan de pruebas </a>
+
 ## Manual de usuario
 
 El Manual de Usuario se encuentra disponible como documento independiente.
@@ -57,7 +59,7 @@ Puede consultarse en el siguiente enlace:
 
 ### Botes
 
-El paquete Botes está estructurado con una interfaz IBote y dos clases principales Bote y EjecutarBote.
+El paquete ``Botes`` está estructurado con una interfaz IBote y dos clases principales Bote y EjecutarBote.
 
 - La interfaz **IBote** define el contrato que deben seguir todas las clases que implementen un bote, asegurando consistencia y modularidad. Tiene los siguientes métodos:
 
@@ -136,7 +138,7 @@ Clase principal que implementa la interfaz. Controla toda la lógica de la aplic
     ```java
     procesarResultados()
     ```
-    Ordena los resultados mediante un TreeMap, facilitando la lectura final del informe.
+    Ordena los resultados mediante un ``TreeMap``, facilitando la lectura final del informe.
 
     ```java
     exportarInforme()
@@ -182,7 +184,7 @@ exportar(informe informe):String
 
 #### **Seccion** 
 es una clase objeto que representa el contenido del informe y sus diferentes seciones.
- - Atributos:
+    - Atributos:
     - titulo: String
     - contenido: String (puede estar en Markdown, HTML, etc.)
 
@@ -258,5 +260,13 @@ Cada bote se ejecuta como un proceso independiente de Java (Process) desde BoteP
 - Se implementó GeneradorInformeRescate para consolidar los datos y GenerarInformeMd para exportar en Markdown.
 
 - Se definió un formato consistente y profesional, con título, fecha de ejecución y detalle por bote.
+
+## Conclusiones
+
+De manera conjunta, este proyecto nos ha permitido profundizar en la ejecución de procesos externos en Java, así como en la lectura y gestión de flujos de entrada y salida. También hemos comprendido la importancia de diseñar el sistema de forma modular mediante interfaces, lo que facilita la escalabilidad, mantenibilidad y futura ampliación del código.
+
+Uno de los mayores retos a nivel grupal fue evitar bloqueos al capturar la salida de los procesos Bote․ Tras investigar diferentes enfoques, conseguimos establecer una comunicación robusta y fiable entre procesos. Además, desarrollamos la estructura para generar informes en Markdown y elaboramos la documentación necesaria para comprender el funcionamiento de la aplicación.
+
+La coordinación entre los miembros del equipo fue positiva, realizando una buena distribución de tareas y revisiones conjuntas de código. Como posibles mejoras futuras, valoramos incorporar exportación a otros formatos, como PDF, y paralelizar el conteo mediante hilos para simular de forma más realista el despliegue de los botes.
 
 
