@@ -15,6 +15,7 @@
   - [1. Generación aleatoria de pasajeros](#1-generación-aleatoria-de-pasajeros)
   - [2. Comunicación con procesos externos](#2-comunicación-con-procesos-externos)
   - [3. Generación de informes](#3-generación-de-informes)
+- [Conclusiones](#conclusiones)
 ## Analisis del Problema 
 - Hay que implementar una aplicacion  que gestione los botes de emergencia teniendo en cuenta que los botes son 20, el tiempo de despliege de botes es finito y el recuento se realiza una vez el bote ya ha sido soltado, los botes tienes un minimo de 1 pasajero y un maximo de 100 divividos en hombres, mujeres y niños.
 - Para calcular el número de pasajeros de cada bote se genera un número aleatorio de 1 a 100 y se reparte entre mujeres, hombre y niños y esto se manda al informe.
