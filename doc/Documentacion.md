@@ -181,7 +181,7 @@ exportar(informe informe):String
 
 #### **Seccion** 
 es una clase objeto que representa el contenido del informe y sus diferentes seciones.
-    - Atributos:
+ - Atributos:
     - titulo: String
     - contenido: String (puede estar en Markdown, HTML, etc.)
 
